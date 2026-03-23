@@ -7,16 +7,18 @@ angleDegrees=360/numberOfSegments;
 createRing(90);
 
 function createRing(radius){
-    let color="rgb(0, 0, 0)";
+    let htmlClass;
     for(let angle=0;angle<360;angle+=angleDegrees){
         if(angle%36){
-              color="rgb(0, 0, 0)";  
+              htmlClass="dark-segment"  
         }
         else{
-            color="rgb(255, 255, 255)";
+            htmlClass="light-segment"
         }
         segment=createBoardSegment(radius,angle);
-        segment.setAttribute("fill", `${color}`);
+        
+        segment.classList.add(htmlClass);
+        
         boardSegements.appendChild(segment);
         
     }
