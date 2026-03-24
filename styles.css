@@ -8,3 +8,10 @@ body{
 .light-segment{
     fill: white;
 }
+.multiplier-ring.dark-segment{
+    fill:lightgray;
+}
+
+.multiplier-ring.light-segment{
+    fill:gray;
+}

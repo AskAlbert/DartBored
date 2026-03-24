@@ -4,11 +4,18 @@ const boardSegements=document.getElementById("board-segments");
 numberOfSegments=20;
 angle=(Math.PI*2)/numberOfSegments;
 angleDegrees=360/numberOfSegments;
-createRing(90);
+createRing(90,true);
+createRing(80);
+createRing(60,true);
+createRing(50);
 
-function createRing(radius){
+
+function createRing(radius,multiplierRing=false){
     let htmlClass;
+    let multiplierClass="multiplier-ring"
     for(let angle=0;angle<360;angle+=angleDegrees){
+        
+        
         if(angle%36){
               htmlClass="dark-segment"  
         }
@@ -18,6 +25,11 @@ function createRing(radius){
         segment=createBoardSegment(radius,angle);
         
         segment.classList.add(htmlClass);
+
+        if(multiplierRing==true){
+         segment.classList.add(multiplierClass);   
+        }
+        
         
         boardSegements.appendChild(segment);
         
