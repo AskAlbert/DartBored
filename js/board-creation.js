@@ -1,6 +1,10 @@
 const svgNS = "http://www.w3.org/2000/svg";
 const boardSegements=document.getElementById("board-segments");
 
+const multiplierClass="multiplier-ring";
+
+
+
 numberOfSegments=20;
 angle=(Math.PI*2)/numberOfSegments;
 angleDegrees=360/numberOfSegments;
@@ -8,11 +12,13 @@ createRing(90,true);
 createRing(80);
 createRing(60,true);
 createRing(50);
+createBullseye();
+
 
 
 function createRing(radius,multiplierRing=false){
     let htmlClass;
-    let multiplierClass="multiplier-ring"
+    
     for(let angle=0;angle<360;angle+=angleDegrees){
         
         
@@ -63,3 +69,20 @@ function createBoardSegment(radius,rotation){
     segmentGroup.appendChild(path);
     return segmentGroup;
 };
+function createBullseye(){
+    outerCircle=createCircle(8,"dark-segment");
+    innerCircle=createCircle(3.5,"light-segment");
+    innerCircle.classList.add(multiplierClass)
+    boardSegements.appendChild(outerCircle);
+    boardSegements.appendChild(innerCircle);
+}
+
+function createCircle(radius,cssClass){
+    const circle= document.createElementNS(svgNS,"circle");
+    circle.setAttribute("transform", "translate(100, 100)");
+    circle.setAttribute("r",radius);
+    circle.classList.add(cssClass);
+    
+    return circle;
+
+}
