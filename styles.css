@@ -4,9 +4,11 @@ body{
 }
 .dark-segment{
     fill: black;
+    border-style: solid;
 }
 .light-segment{
     fill: white;
+    
 }
 .multiplier-ring.dark-segment{
     fill:lightgray;
@@ -14,4 +16,10 @@ body{
 
 .multiplier-ring.light-segment{
     fill:gray;
+}
+
+
+.outer-ring{
+    fill:gray;
+    stroke:none;
 }

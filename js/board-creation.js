@@ -2,38 +2,39 @@ const svgNS = "http://www.w3.org/2000/svg";
 const boardSegements=document.getElementById("board-segments");
 
 const multiplierClass="multiplier-ring";
-
+const outerRingCss="outer-ring";
 
 
 numberOfSegments=20;
 angle=(Math.PI*2)/numberOfSegments;
 angleDegrees=360/numberOfSegments;
-createRing(90,true);
-createRing(80);
-createRing(60,true);
-createRing(50);
+createRing(99,outerRingCss)
+createRing(75,multiplierClass);
+createRing(65);
+createRing(45,multiplierClass);
+createRing(35);
 createBullseye();
 
 
 
-function createRing(radius,multiplierRing=false){
-    let htmlClass;
+function createRing(radius,extraCssClass=""){
+    let cssClass;
     
     for(let angle=0;angle<360;angle+=angleDegrees){
         
         
         if(angle%36){
-              htmlClass="dark-segment"  
+              cssClass="dark-segment"  
         }
         else{
-            htmlClass="light-segment"
+            cssClass="light-segment"
         }
         segment=createBoardSegment(radius,angle);
         
-        segment.classList.add(htmlClass);
+        segment.classList.add(cssClass);
 
-        if(multiplierRing==true){
-         segment.classList.add(multiplierClass);   
+        if(extraCssClass!=""){
+         segment.classList.add(extraCssClass);   
         }
         
         
