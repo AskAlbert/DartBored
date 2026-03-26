@@ -10,11 +10,13 @@ body{
     fill: white;
     
 }
-.multiplier-ring.dark-segment{
+.double-ring.dark-segment,
+.triple-ring.dark-segment{
     fill:lightgray;
 }
 
-.multiplier-ring.light-segment{
+.double-ring.light-segment,
+.triple-ring.light-segment{
     fill:gray;
 }
 
@@ -23,3 +25,4 @@ body{
     fill:gray;
     stroke:none;
 }
+
