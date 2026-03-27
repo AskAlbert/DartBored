@@ -4,11 +4,13 @@ body{
 }
 .dark-segment{
     fill: black;
-    border-style: solid;
+    stroke-width: 0.5;
+    stroke:black;
 }
 .light-segment{
     fill: white;
-    
+     stroke-width: 0.5;
+    stroke:black;
 }
 .double-ring.dark-segment,
 .triple-ring.dark-segment{
@@ -24,5 +26,13 @@ body{
 .outer-ring{
     fill:gray;
     stroke:none;
+}
+
+.bull{
+    fill:gray;
+}
+
+.outer-bull{
+    fill: black;
 }
 

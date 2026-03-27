@@ -19,6 +19,7 @@ createRing(45,tripleRingCssClass);
 createRing(35,innerSingleCssClass);
 createBullseye();
 
+boardSegements.setAttribute("transform", "translate(100, 100)");
 
 
 function createRing(radius,extraCssClass=""){
@@ -63,9 +64,7 @@ function createBoardSegment(radius,rotation){
     const segmentGroup = document.createElementNS(svgNS, "g");
     
     degreeOfset=angleDegrees/2;
-    segmentGroup.setAttribute("transform", `translate(100, 100) rotate(${rotation-(degreeOfset)})`);
-    segmentGroup.setAttribute("stroke", "#000");
-    segmentGroup.setAttribute("stroke-width", "1");
+    segmentGroup.setAttribute("transform", `rotate(${rotation-(degreeOfset)})`);
 
     // Create the <path> element
     const path = document.createElementNS(svgNS, "path");
@@ -77,16 +76,14 @@ function createBoardSegment(radius,rotation){
     return segmentGroup;
 };
 function createBullseye(){
-    outerCircle=createCircle(8,"dark-segment");
-    innerCircle=createCircle(3.5,"light-segment");
-    innerCircle.classList.add(doubleRingCssClass)
+    outerCircle=createCircle(8,"outer-bull");
+    innerCircle=createCircle(3.5,"bull");
     boardSegements.appendChild(outerCircle);
     boardSegements.appendChild(innerCircle);
 }
 
 function createCircle(radius,cssClass){
     const circle= document.createElementNS(svgNS,"circle");
-    circle.setAttribute("transform", "translate(100, 100)");
     circle.setAttribute("r",radius);
     circle.classList.add(cssClass);
     
