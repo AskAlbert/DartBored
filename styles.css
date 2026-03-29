@@ -36,3 +36,9 @@ body{
     fill: black;
 }
 
+.numbers{
+    fill:lightgrey;
+    text-anchor: middle;
+    dominant-baseline: central;
+}
+
