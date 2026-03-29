@@ -18,7 +18,7 @@ createRing(65,outerSingleCssClass);
 createRing(45,tripleRingCssClass);
 createRing(35,innerSingleCssClass);
 createBullseye();
-
+createNumber(0,0,"10");
 boardSegements.setAttribute("transform", "translate(100, 100)");
 
 
@@ -89,4 +89,13 @@ function createCircle(radius,cssClass){
     
     return circle;
 
+}
+function createNumber(xPosistion=0,yPosistion=0,number){
+    const numberElement= document.createElementNS(svgNS,"text");
+    numberElement.textContent=number;
+    numberElement.setAttribute("x",xPosistion);
+    numberElement.setAttribute("y",yPosistion);
+    numberElement.setAttribute("text-anchor","middle");
+    numberElement.setAttribute("dominant-baseline","central")
+    boardSegements.appendChild(numberElement);
 }
