@@ -9,19 +9,40 @@ const outerSingleCssClass="outer-single"
 const innerSingleCssClass="inner-single"
 
 const numberCssClass="numbers"
-const boardNumbers=[6,10,15,2,17,3,19,7,16,8,11,14,9,12,5,20,1,18,4,13];
-const numbersOfset=12;
 
-numberOfSegments=20;
-angle=(Math.PI*2)/numberOfSegments;
-angleDegrees=360/numberOfSegments;
-createRing(99,outerRingCss,true)
-createRing(75,doubleRingCssClass);
-createRing(65,outerSingleCssClass);
-createRing(45,tripleRingCssClass);
-createRing(35,innerSingleCssClass);
-createBullseye();
-boardSegements.setAttribute("transform", "translate(100, 100)");
+const bullRadius=6.35;
+const outerBullRadius=15.9;
+
+const boardNumbers=[6,10,15,2,17,3,19,7,16,8,11,14,9,12,5,20,1,18,4,13];
+const numbersOfset=24;
+
+createDartBoard();
+
+
+function createDartBoard(bluePrinceVersion=false){
+    let doubleTripleIncrease=0;
+    if(bluePrinceVersion==true){
+        doubleTripleIncrease=10;
+    }
+
+    
+    const innerSingleRadius=103-doubleTripleIncrease;
+    const tripleRingRadius=111;
+    const outerSingleRadius=166-doubleTripleIncrease;
+    const doubleRingRadius=174;
+    const outerRingRadius=225.5
+
+    numberOfSegments=20;
+    angle=(Math.PI*2)/numberOfSegments;
+    angleDegrees=360/numberOfSegments;
+    createRing(outerRingRadius,outerRingCss,true)
+    createRing(doubleRingRadius,doubleRingCssClass);
+    createRing(outerSingleRadius,outerSingleCssClass);
+    createRing(tripleRingRadius,tripleRingCssClass);
+    createRing(innerSingleRadius,innerSingleCssClass);
+    createBullseye();
+    boardSegements.setAttribute("transform", "translate(250, 250)");
+}
 
 
 function createRing(radius,extraCssClass="",numbers=false){
@@ -102,8 +123,8 @@ function createBoardSegment(radius,rotation,number=""){
     return segmentGroup;
 };
 function createBullseye(){
-    outerCircle=createCircle(8,"outer-bull");
-    innerCircle=createCircle(3.5,"bull");
+    outerCircle=createCircle(outerBullRadius,"outer-bull");
+    innerCircle=createCircle(bullRadius,"bull");
     boardSegements.appendChild(outerCircle);
     boardSegements.appendChild(innerCircle);
 }
@@ -117,7 +138,6 @@ function createCircle(radius,cssClass){
 
 }
 
-// tried doing it without generating the cordinates did not get that to work in a good way so should probably just use sin and cos
 function createNumber(xPosistion=0,yPosistion=0,number){
     const numberElement= document.createElementNS(svgNS,"text");
     numberElement.textContent=number;

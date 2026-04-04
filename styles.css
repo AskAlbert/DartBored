@@ -40,5 +40,6 @@ body{
     fill:lightgrey;
     text-anchor: middle;
     dominant-baseline: central;
+    font-size: 2em;
 }
 
