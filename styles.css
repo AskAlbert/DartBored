@@ -42,4 +42,7 @@ body{
     dominant-baseline: central;
     font-size: 2em;
 }
-
+.svg-box{
+    width: 900px;
+    height: 900px;
+}

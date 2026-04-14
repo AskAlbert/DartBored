@@ -1,5 +1,5 @@
 const svgNS = "http://www.w3.org/2000/svg";
-const boardSegements=document.getElementById("board-segments");
+const boardContainer=document.getElementById("board-container")
 
 const outerRingCss="outer-ring";
 const doubleRingCssClass="double-ring";
@@ -16,7 +16,21 @@ const outerBullRadius=15.9;
 const boardNumbers=[6,10,15,2,17,3,19,7,16,8,11,14,9,12,5,20,1,18,4,13];
 const numbersOfset=24;
 
+const svgBoxSize=500;
+
+
+const svgElement=document.createElementNS(svgNS,"svg");
+svgElement.setAttribute("viewBox",`0 0  ${svgBoxSize} ${svgBoxSize}`);
+svgElement.classList.add("svg-box");
+const boardSegements=document.createElementNS(svgNS, "g");
+svgElement.appendChild(boardSegements);
+boardContainer.appendChild(svgElement);
+
+
 createDartBoard();
+
+
+
 
 
 function createDartBoard(bluePrinceVersion=false){
@@ -41,7 +55,7 @@ function createDartBoard(bluePrinceVersion=false){
     createRing(tripleRingRadius,tripleRingCssClass);
     createRing(innerSingleRadius,innerSingleCssClass);
     createBullseye();
-    boardSegements.setAttribute("transform", "translate(250, 250)");
+    boardSegements.setAttribute("transform", `translate(${svgBoxSize/2}, ${svgBoxSize/2})`);
 }
 
 
