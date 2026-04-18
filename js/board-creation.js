@@ -1,29 +1,34 @@
 const svgNS = "http://www.w3.org/2000/svg";
-const boardContainer=document.getElementById("board-container")
+const boardContainer=document.getElementById("board-container");
 
 const outerRingCss="outer-ring";
 const doubleRingCssClass="double-ring";
-const tripleRingCssClass="triple-ring"
+const tripleRingCssClass="triple-ring";
 
-const outerSingleCssClass="outer-single"
-const innerSingleCssClass="inner-single"
+const outerSingleCssClass="outer-single";
+const innerSingleCssClass="inner-single";
 
-const numberCssClass="numbers"
+const numberCssClass="numbers";
 
 const bullRadius=6.35;
 const outerBullRadius=15.9;
 
 const boardNumbers=[6,10,15,2,17,3,19,7,16,8,11,14,9,12,5,20,1,18,4,13];
-const numbersOfset=24;
+const numbersOffset=24;
 
 const svgBoxSize=500;
+
+
+const numberOfSegments=20;
+const angle=(Math.PI*2)/numberOfSegments;
+const angleDegrees=360/numberOfSegments;
 
 
 const svgElement=document.createElementNS(svgNS,"svg");
 svgElement.setAttribute("viewBox",`0 0  ${svgBoxSize} ${svgBoxSize}`);
 svgElement.classList.add("svg-box");
-const boardSegements=document.createElementNS(svgNS, "g");
-svgElement.appendChild(boardSegements);
+const boardSegments=document.createElementNS(svgNS, "g");
+svgElement.appendChild(boardSegments);
 boardContainer.appendChild(svgElement);
 
 
@@ -33,9 +38,9 @@ createDartBoard();
 
 
 
-function createDartBoard(bluePrinceVersion=false){
+function createDartBoard(widerTriple=false){
     let doubleTripleIncrease=0;
-    if(bluePrinceVersion==true){
+    if(widerTriple==true){
         doubleTripleIncrease=10;
     }
 
@@ -44,38 +49,35 @@ function createDartBoard(bluePrinceVersion=false){
     const tripleRingRadius=111;
     const outerSingleRadius=166-doubleTripleIncrease;
     const doubleRingRadius=174;
-    const outerRingRadius=225.5
+    const outerRingRadius=225.5;
 
-    numberOfSegments=20;
-    angle=(Math.PI*2)/numberOfSegments;
-    angleDegrees=360/numberOfSegments;
-    createRing(outerRingRadius,outerRingCss,true)
+    createRing(outerRingRadius,outerRingCss,true);
     createRing(doubleRingRadius,doubleRingCssClass);
     createRing(outerSingleRadius,outerSingleCssClass);
     createRing(tripleRingRadius,tripleRingCssClass);
     createRing(innerSingleRadius,innerSingleCssClass);
     createBullseye();
-    boardSegements.setAttribute("transform", `translate(${svgBoxSize/2}, ${svgBoxSize/2})`);
+    boardSegments.setAttribute("transform", `translate(${svgBoxSize/2}, ${svgBoxSize/2})`);
 }
 
 
 function createRing(radius,extraCssClass="",numbers=false){
     let cssClass;
     let boardNbrIndex=0;
-    number="";
-    for(let angle=0;angle<360;angle+=angleDegrees){
+    let number="";
+    for(let rotationAngle=0;rotationAngle<360;rotationAngle+=angleDegrees){
         
         if(numbers==true){
             number=boardNumbers[boardNbrIndex];
          
         }
-        if(angle%36){
-              cssClass="dark-segment"  
+        if(rotationAngle%36){
+              cssClass="dark-segment";  
         }
         else{
-            cssClass="light-segment"
+            cssClass="light-segment";
         }
-        segment=createBoardSegment(radius,angle,number);
+        const segment=createBoardSegment(radius,rotationAngle,number);
         
         segment.classList.add(cssClass);
 
@@ -86,7 +88,7 @@ function createRing(radius,extraCssClass="",numbers=false){
         
         segment.classList.add(`nbr-${boardNumbers[boardNbrIndex]}`)
         boardNbrIndex++;
-        boardSegements.appendChild(segment);
+        boardSegments.appendChild(segment);
         
     }
 }
@@ -95,52 +97,44 @@ function createBoardSegment(radius,rotation,number=""){
 
     
 
-    cos= Math.cos(angle);
-    sin= Math.sin(angle);
+    const cos= Math.cos(angle);
+    const sin= Math.sin(angle);
     
-    
-   
-    
-    xCordinate=cos*radius;
-    yCordinate=sin*radius;
+    const xCoordinate=cos*radius;
+    const yCoordinate=sin*radius;
    
     
     
     const segmentGroup = document.createElementNS(svgNS, "g");
     
-    degreeOfset=angleDegrees/2;
-    //segmentGroup.setAttribute("transform", `rotate(${rotation-(degreeOfset)})`);
+    const degreeOffset=angleDegrees/2;
     
-    // Create the <path> element
     const path = document.createElementNS(svgNS, "path");
-    path.setAttribute("d", `M0 0 L${radius} 0 A${radius} ${radius} 0 0 1  ${xCordinate} ${yCordinate}Z`);
-    path.setAttribute("transform", `rotate(${rotation-(degreeOfset)})`);
+    path.setAttribute("d", `M0 0 L${radius} 0 A${radius} ${radius} 0 0 1  ${xCoordinate} ${yCoordinate}Z`);
+    path.setAttribute("transform", `rotate(${rotation-(degreeOffset)})`);
 
-    
-    
-    // Append elements to the <g> group
 
     segmentGroup.appendChild(path);
 
     if(number!=""){
-        rotationRadian=rotation*(Math.PI/180);
+        const rotationRadian=rotation*(Math.PI/180);
         
-        cosRotation=Math.cos(rotationRadian);
-        sinRotation=Math.sin(rotationRadian);
+        const cosRotation=Math.cos(rotationRadian);
+        const sinRotation=Math.sin(rotationRadian);
 
-        numberX=cosRotation*(radius-numbersOfset);
-        numberY=sinRotation*(radius-numbersOfset);
+        const numberX=cosRotation*(radius-numbersOffset);
+        const numberY=sinRotation*(radius-numbersOffset);
 
-        number=createNumber(numberX,numberY,number);
-        segmentGroup.appendChild(number);
+        const numberElement=createNumber(numberX,numberY,number);
+        segmentGroup.appendChild(numberElement);
     }
     return segmentGroup;
 };
 function createBullseye(){
-    outerCircle=createCircle(outerBullRadius,"outer-bull");
-    innerCircle=createCircle(bullRadius,"bull");
-    boardSegements.appendChild(outerCircle);
-    boardSegements.appendChild(innerCircle);
+    const outerCircle=createCircle(outerBullRadius,"outer-bull");
+    const innerCircle=createCircle(bullRadius,"bull");
+    boardSegments.appendChild(outerCircle);
+    boardSegments.appendChild(innerCircle);
 }
 
 function createCircle(radius,cssClass){
@@ -152,11 +146,11 @@ function createCircle(radius,cssClass){
 
 }
 
-function createNumber(xPosistion=0,yPosistion=0,number){
+function createNumber(xPosition=0,yPosition=0,number){
     const numberElement= document.createElementNS(svgNS,"text");
     numberElement.textContent=number;
-    numberElement.setAttribute("x",xPosistion);
-    numberElement.setAttribute("y",yPosistion);
+    numberElement.setAttribute("x",xPosition);
+    numberElement.setAttribute("y",yPosition);
     numberElement.classList.add(numberCssClass);
     return numberElement;
 }
