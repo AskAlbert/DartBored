@@ -1,6 +1,9 @@
 const svgNS = "http://www.w3.org/2000/svg";
 const boardContainer=document.getElementById("board-container");
 
+const darkSegmentCss="dark-segment";
+const lightSegmentCss="light-segment";
+
 const outerRingCss="outer-ring";
 const doubleRingCssClass="double-ring";
 const tripleRingCssClass="triple-ring";
@@ -9,6 +12,10 @@ const outerSingleCssClass="outer-single";
 const innerSingleCssClass="inner-single";
 
 const numberCssClass="numbers";
+
+const outerBullCss="outer-bull";
+const bullCss="bull";
+
 
 const bullRadius=6.35;
 const outerBullRadius=15.9;
@@ -72,10 +79,10 @@ function createRing(radius,extraCssClass="",numbers=false){
          
         }
         if(rotationAngle%36){
-              cssClass="dark-segment";  
+              cssClass=darkSegmentCss;  
         }
         else{
-            cssClass="light-segment";
+            cssClass=lightSegmentCss;
         }
         const segment=createBoardSegment(radius,rotationAngle,number);
         
@@ -131,8 +138,8 @@ function createBoardSegment(radius,rotation,number=""){
     return segmentGroup;
 };
 function createBullseye(){
-    const outerCircle=createCircle(outerBullRadius,"outer-bull");
-    const innerCircle=createCircle(bullRadius,"bull");
+    const outerCircle=createCircle(outerBullRadius,outerBullCss);
+    const innerCircle=createCircle(bullRadius,bullCss);
     boardSegments.appendChild(outerCircle);
     boardSegments.appendChild(innerCircle);
 }
