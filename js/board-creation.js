@@ -98,7 +98,8 @@ function createRing(radius,extraCssClass="",numbers=false){
          segment.classList.add(extraCssClass);   
         }
         
-        segment.classList.add(`nbr-${boardNumbers[boardNbrIndex]}`)
+        segment.classList.add(`nbr-${boardNumbers[boardNbrIndex]}`);
+        segment.setAttribute("data-value",boardNumbers[boardNbrIndex]);
         boardNbrIndex++;
         boardSegments.appendChild(segment);
         
