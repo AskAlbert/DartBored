@@ -1,5 +1,4 @@
 const svgNS = "http://www.w3.org/2000/svg";
-const boardContainer=document.getElementById("board-container");
 
 const darkSegmentCss="dark-segment";
 const lightSegmentCss="light-segment";
@@ -16,6 +15,8 @@ const numberCssClass="numbers";
 const outerBullCss="outer-bull";
 const bullCss="bull";
 
+const svgCss="svg-box";
+
 
 const bullRadius=6.35;
 const outerBullRadius=15.9;
@@ -30,19 +31,23 @@ const numberOfSegments=20;
 const angle=(Math.PI*2)/numberOfSegments;
 const angleDegrees=360/numberOfSegments;
 
+let boardSegments;
 
-const svgElement=document.createElementNS(svgNS,"svg");
-svgElement.setAttribute("viewBox",`0 0  ${svgBoxSize} ${svgBoxSize}`);
-svgElement.classList.add("svg-box");
-const boardSegments=document.createElementNS(svgNS, "g");
-svgElement.appendChild(boardSegments);
-boardContainer.appendChild(svgElement);
+export function createDartBoardSvg(containerElement){
 
+    if(!(containerElement instanceof Element)){
+        console.warn("createDartBoardSvg: "+containerElement+" is not a DOM element");
+        return null;
+    }
+    const svgElement=document.createElementNS(svgNS,"svg");
+    svgElement.setAttribute("viewBox",`0 0  ${svgBoxSize} ${svgBoxSize}`);
+    svgElement.classList.add(svgCss);
+    boardSegments=document.createElementNS(svgNS, "g");
+    svgElement.appendChild(boardSegments);
+    containerElement.appendChild(svgElement);
+    createDartBoard();
 
-createDartBoard();
-
-
-
+}
 
 
 function createDartBoard(widerTriple=false){
