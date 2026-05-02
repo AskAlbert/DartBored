@@ -1,5 +1,5 @@
 import { createDartBoardSvg } from "./board-creation.js";
-import { level1,checkAnswer } from "./game-logic.js";
+import { level1,level2,checkAnswer } from "./game-logic.js";
 const boardContainer=document.getElementById("board-container");
 createDartBoardSvg(boardContainer);
 
@@ -14,5 +14,5 @@ $(document).ready(function(){
 
 })
 
-level1();
+level2();
 

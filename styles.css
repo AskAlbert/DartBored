@@ -46,6 +46,7 @@ body{
     width: 900px;
     height: 900px;
 }
-.plus{
+.plus.dark-segment,
+.plus.light-segment{
     fill:green;
 }
