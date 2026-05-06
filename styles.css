@@ -50,3 +50,7 @@ body{
 .plus.light-segment{
     fill:green;
 }
+.minus.dark-segment,
+.minus.light-segment{
+    fill:yellow;
+}

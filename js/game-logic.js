@@ -1,11 +1,13 @@
-const plus="plus"
+const plus="plus";
+const minus="minus";
 const maxNumber=20;
+const minNumber=1;
 let answer=0;
-export function level1(){
-    answer=Math.floor(Math.random() * maxNumber) + 1;
+export function introduction(){
+    answer=Math.floor(Math.random() * maxNumber) + minNumber;
     addOperationToSegment("inner-single",answer,plus);
 }
-export function level2(){
+export function addition(){
     const answerMin=2;
     
     answer=Math.floor(Math.random() * (maxNumber-answerMin+1)) + answerMin;
@@ -17,11 +19,37 @@ export function level2(){
     addOperationToSegment("triple-ring",secondNumber,plus);
 
 }
+export function subtraction(){
+    
+
+    const firstAddition=Math.floor(Math.random() * maxNumber) + minNumber;
+    const secondAddition=Math.floor(Math.random() * maxNumber) + minNumber;
+    const firstAndSecondAddition=firstAddition+secondAddition;
+    let minAnswer=firstAndSecondAddition-20;
+    if(minAnswer<1){
+        minAnswer=1;
+    }
+    let maxAnswer=firstAndSecondAddition-1;
+    if(maxAnswer>20){
+        maxAnswer=20;
+    }
+    answer=Math.floor(Math.random() * (maxAnswer-minAnswer+1)) + minAnswer;
+    const subtraction=firstAndSecondAddition-answer;
+
+    addOperationToSegment("inner-single",firstAddition,plus);
+    addOperationToSegment("triple-ring",subtraction,minus);
+    addOperationToSegment("outer-single",secondAddition,plus);
+
+    
+    
+
+}
 export function checkAnswer(number){
     if(number==answer){
         alert("Correct!");
         resetOperation(plus);
-        level2();
+        resetOperation(minus);
+        subtraction();
     }
     else{
         alert("Incorrect")
