@@ -3,13 +3,20 @@ const minus="minus";
 const maxNumber=20;
 const minNumber=1;
 let answer=0;
+let currentLevel="";
+const boardName=document.getElementById("board-name");  
 export function introduction(){
+    currentLevel="Introduction";
+    updateBoardName();
+
     answer=Math.floor(Math.random() * maxNumber) + minNumber;
     addOperationToSegment("inner-single",answer,plus);
 }
 export function addition(){
+    currentLevel="Addition";
+    updateBoardName();
+
     const answerMin=2;
-    
     answer=Math.floor(Math.random() * (maxNumber-answerMin+1)) + answerMin;
     const firstNumberMax=answer-1
     const firstNumberMin=1
@@ -20,7 +27,8 @@ export function addition(){
 
 }
 export function subtraction(){
-    
+    currentLevel="Subtraction";
+    updateBoardName();
 
     const firstAddition=Math.floor(Math.random() * maxNumber) + minNumber;
     const secondAddition=Math.floor(Math.random() * maxNumber) + minNumber;
@@ -47,9 +55,21 @@ export function subtraction(){
 export function checkAnswer(number){
     if(number==answer){
         alert("Correct!");
-        resetOperation(plus);
-        resetOperation(minus);
-        subtraction();
+        switch(currentLevel){
+            case "Introduction":
+                resetOperation(plus);
+                introduction();
+                break;
+            case "Addition":
+                resetOperation(plus);
+                addition();
+                break;
+            case "Subtraction":
+                resetOperation(plus);
+                resetOperation(minus);
+                subtraction();
+                break;
+        }
     }
     else{
         alert("Incorrect")
@@ -70,4 +90,8 @@ function resetOperation(operation){
     for(const part of segmentsArray){
         part.classList.remove(operation);
     }
+}
+
+function updateBoardName(){
+    boardName.textContent=currentLevel;
 }
