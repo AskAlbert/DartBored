@@ -14,7 +14,7 @@ $(document).ready(function(){
 
 })
 
-//introduction();
-addition();
+introduction();
+//addition();
 //subtraction();
 

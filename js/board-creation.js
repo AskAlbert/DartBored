@@ -24,7 +24,14 @@ const outerBullRadius=15.9;
 const boardNumbers=[6,10,15,2,17,3,19,7,16,8,11,14,9,12,5,20,1,18,4,13];
 const numbersOffset=24;
 
-const svgBoxSize=500;
+
+let innerSingleRadius=103;
+const tripleRingRadius=111;
+let outerSingleRadius=166;
+const doubleRingRadius=174;
+const outerRingRadius=225.5;
+
+const svgBoxSize=outerRingRadius*2;
 
 
 const numberOfSegments=20;
@@ -51,17 +58,15 @@ export function createDartBoardSvg(containerElement){
 
 
 function createDartBoard(widerTriple=false){
-    let doubleTripleIncrease=0;
+    const doubleTripleIncrease=10;
     if(widerTriple==true){
-        doubleTripleIncrease=10;
+        innerSingleRadius-=doubleTripleIncrease;
+        outerSingleRadius+=doubleTripleIncrease;
     }
 
+   
     
-    const innerSingleRadius=103-doubleTripleIncrease;
-    const tripleRingRadius=111;
-    const outerSingleRadius=166-doubleTripleIncrease;
-    const doubleRingRadius=174;
-    const outerRingRadius=225.5;
+    
 
     createRing(outerRingRadius,outerRingCss,true);
     createRing(doubleRingRadius,doubleRingCssClass);
