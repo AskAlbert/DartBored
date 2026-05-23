@@ -2,10 +2,22 @@ body{
     display:flex;
     justify-content: center;
 }
+nav{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 800px;
+}
+.nav-button{
+    font-size: 30px;
+    font-weight: bold;
+}
 #board-name{
     height: 40px;
     font-size: 30px;
     text-align: center;
+    width: auto;
 }
 .dark-segment{
     fill: black;

@@ -1,9 +1,13 @@
 import { createDartBoardSvg } from "./board-creation.js";
-import { introduction,addition,checkAnswer, subtraction } from "./game-logic.js";
+import { introduction,addition,checkAnswer, subtraction ,forwardButtonClick,backButtonClick} from "./game-logic.js";
 const boardContainer=document.getElementById("board-container");
+
+const forwardButton=document.getElementById("forward-button");
+const backButton=document.getElementById("back-button");
+
 createDartBoardSvg(boardContainer);
 
-const outerRingSegments=document.getElementsByClassName("outer-ring");
+
 
 
 $(document).ready(function(){
@@ -14,7 +18,14 @@ $(document).ready(function(){
 
 })
 
+forwardButton.addEventListener("click",function(){
+    forwardButtonClick();
+});
+backButton.addEventListener("click",function(){
+    backButtonClick();
+});
+
 introduction();
-//addition();
-//subtraction();
+
+
 

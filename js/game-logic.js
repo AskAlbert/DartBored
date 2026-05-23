@@ -4,18 +4,30 @@ const maxNumber=20;
 const minNumber=1;
 let answer=0;
 let currentLevel="";
-const boardName=document.getElementById("board-name");  
-export function introduction(){
-    currentLevel="Introduction";
-    updateBoardName();
+const boardName=document.getElementById("board-name");
 
+const forwardButton=document.getElementById("forward-button");
+const backButton=document.getElementById("back-button");
+const unicodeBackArrow="&#8592";
+const unicodeForwardArrow="&#8594";
+
+let forwardValue=0;
+let backValue=0;
+
+const levelNames=["Introduction","Addition","Subtraction"];
+
+
+export function introduction(){
+    currentLevel=0;
+    updateBoardName();
+    updateNavButtons();
     answer=Math.floor(Math.random() * maxNumber) + minNumber;
     addOperationToSegment("inner-single",answer,plus);
 }
 export function addition(){
-    currentLevel="Addition";
+    currentLevel=1;
     updateBoardName();
-
+    updateNavButtons();
     const answerMin=2;
     answer=Math.floor(Math.random() * (maxNumber-answerMin+1)) + answerMin;
     const firstNumberMax=answer-1
@@ -27,9 +39,9 @@ export function addition(){
 
 }
 export function subtraction(){
-    currentLevel="Subtraction";
+    currentLevel=2;
     updateBoardName();
-
+    updateNavButtons();
     const firstAddition=Math.floor(Math.random() * maxNumber) + minNumber;
     const secondAddition=Math.floor(Math.random() * maxNumber) + minNumber;
     const firstAndSecondAddition=firstAddition+secondAddition;
@@ -55,24 +67,38 @@ export function subtraction(){
 export function checkAnswer(number){
     if(number==answer){
         alert("Correct!");
-        switch(currentLevel){
-            case "Introduction":
-                resetOperation(plus);
-                introduction();
-                break;
-            case "Addition":
-                resetOperation(plus);
-                addition();
-                break;
-            case "Subtraction":
-                resetOperation(plus);
-                resetOperation(minus);
-                subtraction();
-                break;
-        }
+        clearBoard(currentLevel);
+        setBoard(currentLevel);
     }
     else{
         alert("Incorrect")
+    }
+}
+function clearBoard(level){
+    switch(level){
+            case 0:
+                resetOperation(plus);
+                break;
+            case 1:
+                resetOperation(plus);
+                break;
+            case 2:
+                resetOperation(plus);
+                resetOperation(minus);
+                break;
+        }
+}
+function setBoard(level){
+    switch(level){
+        case 0:
+            introduction();
+            break;
+        case 1:
+            addition();
+            break;
+        case 2:
+            subtraction();
+            break;
     }
 }
 
@@ -93,5 +119,36 @@ function resetOperation(operation){
 }
 
 function updateBoardName(){
-    boardName.textContent=currentLevel;
+    boardName.textContent=levelNames[currentLevel];
+}
+
+function updateNavButtons(){
+    if(currentLevel==0){
+        backButton.disabled=true;
+        backButton.style.visibility="hidden";
+    }
+    else{
+        backButton.disabled=false;
+        backButton.style.visibility="visible";
+        backValue=currentLevel-1;
+        backButton.innerHTML=unicodeBackArrow+" "+levelNames[backValue];
+    }
+    if(currentLevel==levelNames.length-1){
+        forwardButton.disabled=true;
+        forwardButton.style.visibility="hidden";
+    }
+    else{
+        forwardButton.disabled=false;
+        forwardButton.style.visibility="visible";
+        forwardValue=currentLevel+1;
+        forwardButton.innerHTML=levelNames[forwardValue]+" "+unicodeForwardArrow;
+    }
+}
+export function forwardButtonClick(){
+    clearBoard(currentLevel);
+    setBoard(forwardValue);
+}
+export function backButtonClick(){
+    clearBoard(currentLevel);
+    setBoard(backValue);
 }
