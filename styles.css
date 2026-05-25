@@ -44,7 +44,22 @@ nav{
     fill:gray;
     stroke:none;
 }
-
+.outer-ring:hover{
+    cursor: pointer;
+    
+}
+.outer-ring:active{
+    fill:lightgray;
+    stroke:black;
+    
+}
+.outer-ring text{
+    fill:lightgray;
+}
+.outer-ring:active text{
+    fill: gray;
+    stroke:none;
+}
 .bull{
     fill:gray;
 }
@@ -54,11 +69,11 @@ nav{
 }
 
 .numbers{
-    fill:lightgrey;
     text-anchor: middle;
     dominant-baseline: central;
     font-size: 2em;
 }
+
 .svg-box{
     width: 800px;
     height: 800px;
