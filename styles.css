@@ -3,21 +3,26 @@ body{
     justify-content: center;
 }
 nav{
-    display:flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
     width: 800px;
+    height: 60px;
 }
 .nav-button{
     font-size: 30px;
     font-weight: bold;
+    width: max-content;
+    padding-left:10px;
+    padding-right:10px;
 }
+#forward-button{
+    justify-self: end;
+}
+
 #board-name{
-    height: 40px;
-    font-size: 30px;
-    text-align: center;
-    width: auto;
+    justify-self: center;
+    margin:0;
 }
 #board-container{
     width: 800px;

@@ -1,3 +1,4 @@
+import {showPopUp} from "./pop-up.js";
 const plus="plus";
 const minus="minus";
 const maxNumber=20;
@@ -66,12 +67,12 @@ export function subtraction(){
 }
 export function checkAnswer(number){
     if(number==answer){
-        alert("Correct!");
+        showPopUp("Correct","","Continue");
         clearBoard(currentLevel);
         setBoard(currentLevel);
     }
     else{
-        alert("Incorrect")
+        showPopUp("Incorrect","", "Try again");
     }
 }
 function clearBoard(level){
