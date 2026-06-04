@@ -2,11 +2,14 @@ body{
     display:flex;
     justify-content: center;
 }
+#game-container{
+    width:800px;
+}
 nav{
     display:grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
-    width: 800px;
+    width: 100%;
     height: 60px;
 }
 .nav-button{
@@ -25,8 +28,8 @@ nav{
     margin:0;
 }
 #board-container{
-    width: 800px;
-    height: 800px;
+    width: 96%;
+    margin-left:2%;
     position: relative;
     display: flex;
     justify-content: center;
@@ -113,6 +116,13 @@ nav{
     font-size: 20px;
     padding: 10px;
 }
+footer{
+    background-color: darkgray;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+}
+
 #blur{
     position:fixed;
     width: 100%;
@@ -122,3 +132,4 @@ nav{
     background-color: rgba(0,0,0,0.5);
     z-index: 1;
 }
+
