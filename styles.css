@@ -3,21 +3,30 @@ body{
     justify-content: center;
 }
 #game-container{
-    width:800px;
+    height: 98vh;
+    width:auto;
+    display:flex;
+    flex-direction: column;
 }
+
 nav{
+    
     display:grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
     width: 100%;
-    height: 60px;
+    height: 6%;
+    margin-bottom:1%;
+    margin-top:0;
+    
 }
 .nav-button{
-    font-size: 30px;
+    font-size: 2rem;
     font-weight: bold;
     width: max-content;
-    padding-left:10px;
-    padding-right:10px;
+    padding-left:5%;
+    padding-right:5%;
+
 }
 #forward-button{
     justify-self: end;
@@ -25,15 +34,20 @@ nav{
 
 #board-name{
     justify-self: center;
+    font-size:2rem;
     margin:0;
+    align-self: center;
 }
 #board-container{
-    width: 96%;
-    margin-left:2%;
+    height: 88%;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.svg-box{
+    height: 100%;
 }
 .dark-segment{
     fill: black;
@@ -103,7 +117,6 @@ nav{
     width: 40%;
     height:auto;
     padding: 2%;
-    height:auto;
     background-color: white;
     z-index: 2;
     position: absolute;
@@ -113,14 +126,16 @@ nav{
     
 }
 #pop-up-button{
-    font-size: 20px;
-    padding: 10px;
+    font-size: 1em;
+    padding: 4%;
 }
 footer{
     background-color: darkgray;
-    height: 40px;
+    margin-top:1%;
+    height: 5%;
     text-align: center;
-    line-height: 40px;
+    margin-bottom: 0;
+    line-height: 1vh;
 }
 
 #blur{
