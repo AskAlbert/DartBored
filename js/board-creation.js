@@ -147,7 +147,7 @@ function createBoardSegment(radius,rotation,number=""){
         segmentGroup.appendChild(numberElement);
     }
     return segmentGroup;
-};
+}
 function createBullseye(){
     const outerCircle=createCircle(outerBullRadius,outerBullCss);
     const innerCircle=createCircle(bullRadius,bullCss);

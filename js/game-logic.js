@@ -4,7 +4,7 @@ const minus="minus";
 const maxNumber=20;
 const minNumber=1;
 let answer=0;
-let currentLevel="";
+let currentLevel=0;
 const boardName=document.getElementById("board-name");
 
 const forwardButton=document.getElementById("forward-button");
@@ -66,7 +66,7 @@ export function subtraction(){
 
 }
 export function checkAnswer(number){
-    if(number==answer){
+    if(number===answer){
         showPopUp("Correct","","Continue");
         clearBoard(currentLevel);
         setBoard(currentLevel);
@@ -124,7 +124,7 @@ function updateBoardName(){
 }
 
 function updateNavButtons(){
-    if(currentLevel==0){
+    if(currentLevel===0){
         backButton.disabled=true;
         backButton.style.visibility="hidden";
     }
@@ -134,7 +134,7 @@ function updateNavButtons(){
         backValue=currentLevel-1;
         backButton.innerHTML=unicodeBackArrow+" "+levelNames[backValue];
     }
-    if(currentLevel==levelNames.length-1){
+    if(currentLevel===levelNames.length-1){
         forwardButton.disabled=true;
         forwardButton.style.visibility="hidden";
     }

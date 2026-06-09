@@ -1,5 +1,5 @@
 import { createDartBoardSvg } from "./board-creation.js";
-import { introduction,addition,checkAnswer, subtraction ,forwardButtonClick,backButtonClick} from "./game-logic.js";
+import { introduction,checkAnswer ,forwardButtonClick,backButtonClick} from "./game-logic.js";
 import { hidePopUp } from "./pop-up.js";
 const boardContainer=document.getElementById("board-container");
 
@@ -28,7 +28,6 @@ backButton.addEventListener("click",function(){
     backButtonClick();
 });
 popUpButton.addEventListener("click",function(){
-    console.log("clicked");
     hidePopUp();
 
 });
