@@ -113,6 +113,10 @@ nav{
 .minus.light-segment{
     fill:yellow;
 }
+.mult.dark-segment,
+.mult.light-segment{
+    fill:magenta;
+}
 #pop-up{
     width: 40%;
     height:auto;

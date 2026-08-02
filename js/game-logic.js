@@ -1,6 +1,7 @@
 import {showPopUp} from "./pop-up.js";
 const plus="plus";
 const minus="minus";
+const mult="mult";
 const maxNumber=20;
 const minNumber=1;
 let answer=0;
@@ -15,7 +16,7 @@ const unicodeForwardArrow="&#8594";
 let forwardValue=0;
 let backValue=0;
 
-const levelNames=["Introduction","Addition","Subtraction"];
+const levelNames=["Introduction","Addition","Subtraction","Multiplication"];
 
 
 export function introduction(){
@@ -62,11 +63,26 @@ export function subtraction(){
     addOperationToSegment("outer-single",secondAddition,plus);
 
     
-    
+
 
 }
+export function multiplication(){
+    currentLevel=3;
+    updateBoardName();
+    updateNavButtons();
+    const multMin=minNumber*2;
+    const multMax=maxNumber/2;
+    const firstMultNbr=Math.floor(Math.random() * multMax) + multMin;
+    const secondMultMax=Math.floor(maxNumber/firstMultNbr);
+    const secondMultNbr=Math.floor(Math.random()*(secondMultMax-multMin+1))+multMin;
+    answer=firstMultNbr*secondMultNbr;
+    addOperationToSegment("inner-single",firstMultNbr,plus);
+    addOperationToSegment("triple-ring",secondMultNbr,mult);
+
+} 
+
 export function checkAnswer(number){
-    if(number===answer){
+    if(number==answer){
         showPopUp("Correct","","Continue");
         clearBoard(currentLevel);
         setBoard(currentLevel);
@@ -87,6 +103,10 @@ function clearBoard(level){
                 resetOperation(plus);
                 resetOperation(minus);
                 break;
+            case 3:
+                resetOperation(plus);
+                resetOperation(mult);
+                break;
         }
 }
 function setBoard(level){
@@ -99,6 +119,9 @@ function setBoard(level){
             break;
         case 2:
             subtraction();
+            break;
+        case 3:
+            multiplication();
             break;
     }
 }
