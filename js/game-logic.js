@@ -2,6 +2,7 @@ import {showPopUp} from "./pop-up.js";
 const plus="plus";
 const minus="minus";
 const mult="mult";
+const devide="devide"
 const maxNumber=20;
 const minNumber=1;
 let answer=0;
@@ -16,7 +17,7 @@ const unicodeForwardArrow="&#8594";
 let forwardValue=0;
 let backValue=0;
 
-const levelNames=["Introduction","Addition","Subtraction","Multiplication"];
+const levelNames=["Introduction","Addition","Subtraction","Multiplication","Division"];
 
 
 export function introduction(){
@@ -26,7 +27,7 @@ export function introduction(){
     answer=Math.floor(Math.random() * maxNumber) + minNumber;
     addOperationToSegment("inner-single",answer,plus);
 }
-export function addition(){
+function addition(){
     currentLevel=1;
     updateBoardName();
     updateNavButtons();
@@ -40,7 +41,7 @@ export function addition(){
     addOperationToSegment("triple-ring",secondNumber,plus);
 
 }
-export function subtraction(){
+function subtraction(){
     currentLevel=2;
     updateBoardName();
     updateNavButtons();
@@ -66,20 +67,47 @@ export function subtraction(){
 
 
 }
-export function multiplication(){
+function multiplication(){
     currentLevel=3;
     updateBoardName();
     updateNavButtons();
     const multMin=minNumber*2;
     const multMax=maxNumber/2;
-    const firstMultNbr=Math.floor(Math.random() * multMax) + multMin;
+    const firstMultNbr=Math.floor(Math.random() * multMax) + 1;
     const secondMultMax=Math.floor(maxNumber/firstMultNbr);
     const secondMultNbr=Math.floor(Math.random()*(secondMultMax-multMin+1))+multMin;
     answer=firstMultNbr*secondMultNbr;
     addOperationToSegment("inner-single",firstMultNbr,plus);
     addOperationToSegment("triple-ring",secondMultNbr,mult);
 
-} 
+}
+function divison(){
+    currentLevel=4;
+    updateBoardName();
+    updateNavButtons();
+    const dividenArray=[4,6,8,9,10,12,14,15,16,18,20];
+
+    const dividen= dividenArray[Math.floor(Math.random()*dividenArray.length)];
+
+    let divisorArray=[]
+    for(let i=2;i<=10;i++){
+        if(!(dividen%i)){
+            divisorArray.push(i);
+        }
+
+    }
+
+    const divisor=divisorArray[Math.floor(Math.random()*divisorArray.length)];
+
+    answer=dividen/divisor;
+
+    addOperationToSegment("inner-single",dividen,plus);
+    addOperationToSegment("triple-ring",divisor,devide);
+
+
+}
+
+
 
 export function checkAnswer(number){
     if(number==answer){
@@ -107,6 +135,9 @@ function clearBoard(level){
                 resetOperation(plus);
                 resetOperation(mult);
                 break;
+            case 4:
+                resetOperation(plus);
+                resetOperation(devide)
         }
 }
 function setBoard(level){
@@ -122,6 +153,9 @@ function setBoard(level){
             break;
         case 3:
             multiplication();
+            break;
+        case 4:
+            divison();
             break;
     }
 }

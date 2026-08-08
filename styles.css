@@ -39,7 +39,7 @@ nav{
     align-self: center;
 }
 #board-container{
-    height: 88%;
+    height: 89%;
     position: relative;
     display: flex;
     justify-content: center;
@@ -117,6 +117,11 @@ nav{
 .mult.light-segment{
     fill:magenta;
 }
+.devide.dark-segment,
+.devide.light-segment{
+    fill:purple;
+}
+
 #pop-up{
     width: 40%;
     height:auto;
@@ -135,10 +140,9 @@ nav{
 }
 footer{
     background-color: darkgray;
-    margin-top:1%;
-    height: 5%;
+    margin-top:2%;
     text-align: center;
-    margin-bottom: 0;
+    margin-bottom: -10;
     line-height: 1vh;
 }
 
