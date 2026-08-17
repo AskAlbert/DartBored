@@ -11,14 +11,14 @@ const boardName=document.getElementById("board-name");
 
 const forwardButton=document.getElementById("forward-button");
 const backButton=document.getElementById("back-button");
-const unicodeBackArrow="&#8592";
-const unicodeForwardArrow="&#8594";
+const backText=document.getElementById("back-text");
+const forwardText=document.getElementById("forward-text");
 
 let forwardValue=0;
 let backValue=0;
 
 const levelNames=["Introduction","Addition","Subtraction","Multiplication","Division"];
-
+const levelSymbols=["i","+","-","×","÷"];
 
 export function introduction(){
     currentLevel=0;
@@ -189,7 +189,7 @@ function updateNavButtons(){
         backButton.disabled=false;
         backButton.style.visibility="visible";
         backValue=currentLevel-1;
-        backButton.innerHTML=unicodeBackArrow+" "+levelNames[backValue];
+        backText.innerHTML=levelSymbols[backValue];
     }
     if(currentLevel===levelNames.length-1){
         forwardButton.disabled=true;
@@ -199,7 +199,7 @@ function updateNavButtons(){
         forwardButton.disabled=false;
         forwardButton.style.visibility="visible";
         forwardValue=currentLevel+1;
-        forwardButton.innerHTML=levelNames[forwardValue]+" "+unicodeForwardArrow;
+        forwardText.innerHTML=levelSymbols[forwardValue]
     }
 }
 export function forwardButtonClick(){
