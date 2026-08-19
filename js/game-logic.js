@@ -11,8 +11,8 @@ const boardName=document.getElementById("board-name");
 
 const forwardButton=document.getElementById("forward-button");
 const backButton=document.getElementById("back-button");
-const backText=document.getElementById("back-text");
-const forwardText=document.getElementById("forward-text");
+const backIcon=document.getElementById("back-icon");
+const forwardIcon=document.getElementById("forward-icon");
 
 let forwardValue=0;
 let backValue=0;
@@ -189,7 +189,7 @@ function updateNavButtons(){
         backButton.disabled=false;
         backButton.style.visibility="visible";
         backValue=currentLevel-1;
-        backText.innerHTML=levelSymbols[backValue];
+        backIcon.innerHTML=levelSymbols[backValue];
     }
     if(currentLevel===levelNames.length-1){
         forwardButton.disabled=true;
@@ -199,7 +199,7 @@ function updateNavButtons(){
         forwardButton.disabled=false;
         forwardButton.style.visibility="visible";
         forwardValue=currentLevel+1;
-        forwardText.innerHTML=levelSymbols[forwardValue]
+        forwardIcon.innerHTML=levelSymbols[forwardValue]
     }
 }
 export function forwardButtonClick(){
