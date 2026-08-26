@@ -162,20 +162,24 @@ nav{
 }
 
 #pop-up{
-    width: 40%;
+    width: 20%;
     height:auto;
-    padding: 2%;
+    padding: 1%;
     background-color: white;
     z-index: 2;
-    position: absolute;
+    position: fixed;
     border-radius: 20px;
     text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     
     
 }
 #pop-up-button{
     font-size: 1em;
     padding: 4%;
+    
 }
 footer{
     background-color: darkgray;
