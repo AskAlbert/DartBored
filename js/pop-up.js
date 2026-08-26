@@ -22,6 +22,6 @@ function setPopupContent(title,text="",buttonText=""){
         textElement.textContent=text;
     }
     if(buttonText!=""){
-        popUpButton.innerText=buttonText;
+        popUpButton.textContent=buttonText;
     }
 }

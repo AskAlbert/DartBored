@@ -1,38 +1,22 @@
 import { createDartBoardSvg } from "./board-creation.js";
 import { introduction,checkAnswer ,forwardButtonClick,backButtonClick} from "./game-logic.js";
 import { hidePopUp } from "./pop-up.js";
-const boardContainer=document.getElementById("board-container");
 
+const boardContainer=document.getElementById("board-container");
 const forwardButton=document.getElementById("forward-button");
 const backButton=document.getElementById("back-button");
-
 const popUpButton=document.getElementById("pop-up-button");
 
 createDartBoardSvg(boardContainer);
 
-
-
-
-$(document).ready(function(){
-    $("g.outer-ring").click(function(){
-        checkAnswer($(this).attr("data-value"));
-    })
-    
-
-})
-
-forwardButton.addEventListener("click",function(){
-    forwardButtonClick();
+boardContainer.querySelectorAll("g.outer-ring").forEach((ring) => {
+  ring.addEventListener("click", () => {
+    checkAnswer(ring.dataset.value);
+  });
 });
-backButton.addEventListener("click",function(){
-    backButtonClick();
-});
-popUpButton.addEventListener("click",function(){
-    hidePopUp();
 
-});
+forwardButton.addEventListener("click",forwardButtonClick);    
+backButton.addEventListener("click",backButtonClick);
+popUpButton.addEventListener("click",hidePopUp);
 
 introduction();
-
-
-

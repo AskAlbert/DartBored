@@ -156,8 +156,8 @@ nav{
 .mult.light-segment{
     fill:hotpink;
 }
-.devide.dark-segment,
-.devide.light-segment{
+.divide.dark-segment,
+.divide.light-segment{
     fill:purple;
 }
 
@@ -193,6 +193,9 @@ footer{
     left:0;
     background-color: rgba(0,0,0,0.5);
     z-index: 1;
+}
+a{
+    white-space: nowrap;
 }
 
 @media (max-width: 650px){

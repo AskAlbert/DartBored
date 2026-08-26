@@ -2,7 +2,7 @@ import {showPopUp} from "./pop-up.js";
 const plus="plus";
 const minus="minus";
 const mult="mult";
-const devide="devide"
+const divide="divide";
 const maxNumber=20;
 const minNumber=1;
 let answer=0;
@@ -33,8 +33,8 @@ function addition(){
     updateNavButtons();
     const answerMin=2;
     answer=Math.floor(Math.random() * (maxNumber-answerMin+1)) + answerMin;
-    const firstNumberMax=answer-1
-    const firstNumberMin=1
+    const firstNumberMax=answer-1;
+    const firstNumberMin=1;
     const firstNumber=Math.floor(Math.random() * (firstNumberMax-firstNumberMin+1)) + firstNumberMin;
     const secondNumber=answer-firstNumber;
     addOperationToSegment("inner-single",firstNumber,plus);
@@ -81,17 +81,17 @@ function multiplication(){
     addOperationToSegment("triple-ring",secondMultNbr,mult);
 
 }
-function divison(){
+function division(){
     currentLevel=4;
     updateBoardName();
     updateNavButtons();
-    const dividenArray=[4,6,8,9,10,12,14,15,16,18,20];
+    const dividendArray=[4,6,8,9,10,12,14,15,16,18,20];
 
-    const dividen= dividenArray[Math.floor(Math.random()*dividenArray.length)];
+    const dividend= dividendArray[Math.floor(Math.random()*dividendArray.length)];
 
-    let divisorArray=[]
+    let divisorArray=[];
     for(let i=2;i<=10;i++){
-        if(!(dividen%i)){
+        if(!(dividend%i)){
             divisorArray.push(i);
         }
 
@@ -99,10 +99,10 @@ function divison(){
 
     const divisor=divisorArray[Math.floor(Math.random()*divisorArray.length)];
 
-    answer=dividen/divisor;
+    answer=dividend/divisor;
 
-    addOperationToSegment("inner-single",dividen,plus);
-    addOperationToSegment("triple-ring",divisor,devide);
+    addOperationToSegment("inner-single",dividend,plus);
+    addOperationToSegment("triple-ring",divisor,divide);
 
 
 }
@@ -137,7 +137,8 @@ function clearBoard(level){
                 break;
             case 4:
                 resetOperation(plus);
-                resetOperation(devide)
+                resetOperation(divide);
+                break;
         }
 }
 function setBoard(level){
@@ -155,7 +156,7 @@ function setBoard(level){
             multiplication();
             break;
         case 4:
-            divison();
+            division();
             break;
     }
 }
@@ -189,7 +190,7 @@ function updateNavButtons(){
         backButton.disabled=false;
         backButton.style.visibility="visible";
         backValue=currentLevel-1;
-        backIcon.innerHTML=levelSymbols[backValue];
+        backIcon.textContent=levelSymbols[backValue];
     }
     if(currentLevel===levelNames.length-1){
         forwardButton.disabled=true;
@@ -199,7 +200,7 @@ function updateNavButtons(){
         forwardButton.disabled=false;
         forwardButton.style.visibility="visible";
         forwardValue=currentLevel+1;
-        forwardIcon.innerHTML=levelSymbols[forwardValue]
+        forwardIcon.textContent=levelSymbols[forwardValue];
     }
 }
 export function forwardButtonClick(){
